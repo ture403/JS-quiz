@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>퀴즈 이펙트02</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/quiz.css">
+</head>
+<body>
+    <header id="header">
+        <h1><a href="../javascript14.html">Quiz</a><em>주관식 확인하기 유형</em></h1>
+        <ul>
+            <li><a href="quizEffect01.html">1</a></li>
+            <li class="active"><a href="quizEffect02.html">2</a></li>
+            <li><a href="quizEffect03.html">3</a></li>
+            <li><a href="quizEffect04.html">4</a></li>
+            <li><a href="quizEffect05.html">5</a></li>
+            <li><a href="quizEffect06.html">6</a></li>
+            <li><a href="quizEffect07.html">7</a></li>
+        </ul>
+    </header>
+    <!-- //header -->
+    
+    <main id="main">
+        <div class="quiz_wrap">
+            <div class="quiz">
+                <div class="quiz_header">
+                    <h2 class="quiz_title"><span></span> <em></em></h2>
+                </div>
+                <div class="quiz_main">
+                    <div class="quiz_quection">
+                        <em></em>. <span></span>
+                    </div>
+                    <div class="quiz_view">
+                        <div class='dog_wrap'>
+                            <div class='card-container'>
+                                <div class="dog">
+                                    <div class="head">
+                                        <div class="ears"></div>
+                                        <div class="face"></div>
+                                        <div class="eyes">
+                                            <div class="teardrop"></div>
+                                        </div>
+                                        <div class="nose"></div>
+                                        <div class="mouth">
+                                            <div class="tongue"></div>
+                                        </div>
+                                        <div class="chin"></div>
+                                    </div>
+                                    <div class="body">
+                                        <div class="tail"></div>
+                                        <div class="legs"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="quiz_answer">
+                        <input class="input" type="text" placeholder="정답을 적어주세요">
+                        <button class="confirm">정답 확인 하기</button>
+                        <div class="result"></div>
+                    </div>
+                </div>
+                <div class="quiz_footer">
+                    <div class="quiz_desc">설명</div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- //main -->
+    
+    <footer id="footer">
+        <a href="mailto:ture403@gmail.com">ture403@gmail.com</a>
+    </footer>
+    <!-- //footer -->
+
+    <script>
+        //선택자
+        const quizWrap =document.querySelector(".quiz_wrap");
+        const quizTitle =quizWrap.querySelector(".quiz_title span");
+        const quizTime =quizWrap.querySelector(".quiz_title em");
+        const quizNumer = quizWrap.querySelector(".quiz_quection em");
+        const quizQuection = quizWrap.querySelector(".quiz_quection span");
+        const quizDesc = quizWrap.querySelector(".quiz_desc");
+        const quizAnswerConfirm = quizWrap.querySelector(".quiz_answer .confirm");
+        const quizAnswerResult = quizWrap.querySelector(".quiz_answer .result");
+        const quizAnswerInput = quizWrap.querySelector(".quiz_answer .input");
+        const dogWrap = quizWrap.querySelector(".dog_wrap");
+
+        //문제 정보
+        const infoType = "정보처리 기능사";
+        const infoTime = "2011년도 5회";
+        const infoNumber = "2";
+        const infoQuection = "프레젠테이션에서 화면 전체를 전환하는 단위를 의미하는것은?";
+        const infoAnswer = "슬라이드";
+        const infoDesc = "슬라이드는 프리젠테이션의 화면 전체를 말하고 개체는 화면을 구성하는 개개의 요소를 말한다.";
+        
+
+        //문제출력
+        quizTitle.textContent = infoType;
+        quizTime.textContent = infoTime;
+        quizNumer.textContent = infoNumber;
+        quizQuection.textContent = infoQuection;
+        quizDesc.textContent = infoDesc;
+        quizAnswerResult.textContent = infoAnswer;
+
+        //정답 & 해설 숨기기
+        quizAnswerResult.style.display = "none";
+        quizDesc.style.display = "none";
+
+        //사용자 정답
+        quizAnswerConfirm.addEventListener("click", function(){
+            const userAnswer = quizAnswerInput.value.trim();
+            quizAnswerInput.style.display = "none"; //input 숨김
+            quizAnswerConfirm.style.display = "none"; //정답 확인 버튼 숨김
+            quizAnswerResult.style.display = "block"; // 정답 화면 보이기
+            quizDesc.style.display = "block"; //해설 보이기
+            
+            if( infoAnswer == userAnswer){
+                // alert("정답입니다.");
+                dogWrap.classList.add("like");
+            } else {
+                // alert("오답입니다.");
+                dogWrap.classList.add("dislike");
+            }
+        });
+    </script>
+</body>
+</html>
